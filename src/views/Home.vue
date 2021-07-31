@@ -6,8 +6,6 @@
         <Cursos/>
         <Beneficios/>
         <Footer/>
-        <Postula/>
-        
   </div>
 </template>
 
@@ -17,10 +15,7 @@
 import Portada from '../components/Portada.vue';
 import Cursos from '../components/Cursos.vue';
 import Beneficios from '../components/Beneficios.vue';
-import Footer from '../components/Footer.vue';
-import Postula from '../components/Postula.vue';
-import Menu from '../components/Menu.vue';
-
+import Footer from '../components/Footer.vue'
 
 export default {
   name: 'Home',
@@ -29,9 +24,7 @@ export default {
     Portada,
     Cursos,
     Beneficios,
-    Footer,
-    Postula,
-    Menu,
+    Footer
   }
 }
 </script>

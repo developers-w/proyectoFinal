@@ -1,14 +1,15 @@
 <template>
   <div class="cursos">
-    <h2>Conoce nuestros Programas de Especialización</h2>
+    <p>Conoce nuestros Programas de Especialización</p>
     <div class="contenedorCursos">
-      <div class="itemCurso">
+      <div class="itemCurso" v-for="(curso,i) in cursos" :key="i" >
         <img src="../assets/curso.png" alt="" />
 
-        <h2>nombre curso</h2>
+        <p>{{curso.curso}}</p>
         <div>
-          <button>+</button>
-          <a href=""> Ver más</a>
+          <button @click="contador" >+</button>
+          <router-link class="link" :to="`/Curso/${curso.id}`">Ver más</router-link>
+          
         </div>
       </div>
     </div>
@@ -16,17 +17,21 @@
 </template>
 
 <script>
+import Curso from '../views/Curso.vue'
 export default {
+  Curso,
     data() {
         return {
+
+          cursos:[]
             
         }
     },
     methods:{
        async getCursos(){
-           const data= await fetch('https://thawing-stream-82830.herokuapp.com/app/cursos')  
+           const data= await fetch('http://localhost:3000/cursos')  
            const info=  await data.json();
-           console.log(info);
+           this.cursos=info;
        }
 
     },
@@ -37,52 +42,57 @@ export default {
 </script>
 
 <style scoped>
+a{
+ text-decoration: none; 
+}
 .cursos {
   width: 1194px;
   padding-top: 80px;
   margin: 0 auto;
+  font-size: 20px;
+  font-family: poppins;
+  font-weight: bold;
+  
 
 }
-.cursos > h2 {
+.cursos > p {
   text-align: left;
+  font-weight: bold;
   color: #000425;
   margin-bottom: 32px;
+  
 }
 .contenedorCursos {
   width: 720px;
+  color: #F8F8FA;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  
 }
 .itemCurso {
   width: 343px;
   height: 320px;
   margin-bottom: 40px;
   position: relative;
-  /* display: flex;
-    justify-content: space-around;
-    align-items: flex-end; */
 }
 
 .itemCurso img {
   width: 100%;
   filter: brightness(0.7);
 }
-/* .itemCurso img:before{
-position: absolute;
-        top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-  background-color: rgba(0,0,0,0.6);
 
-} */
-.itemCurso h2 {
+.itemCurso p {
   position: absolute;
-  bottom: 69px;
+  bottom: 60px;
   left: 20px;
   margin-bottom: 0;
   display: flex;
+  width: 170px;
+  font-weight: 500;
+  text-align: left;
+  
+
 }
 .itemCurso div {
   position: absolute;
@@ -90,10 +100,17 @@ position: absolute;
   right: 28px;
 }
 .itemCurso div button {
-  width: 30px;
-  height: 30px;
-  border: 1px solid white;
+  width: 20px;
+  height: 20px;
+  color: #F8F8FA;
+  border: 3px solid white;
   border-radius: 50%;
   background-color: transparent;
+}
+.link{
+  color: #F8F8FA;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
 }
 </style>

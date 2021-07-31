@@ -10,6 +10,7 @@
           <div>
             <div class="carrito">
               <img src="../assets/carrito.png" alt="" />
+              <p  >{{contador}}</p>
             </div>
             <div class="hamburgueza"></div>
           </div>
@@ -28,12 +29,17 @@
     </div> 
   </div>
 </div>
-
   
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      contador:0
+    }
+  },
+};
 </script>
 
 <style scoped>
@@ -47,7 +53,9 @@ export default {};
 .safe {
   width: 1194px;
   min-height: 100vh;
-  margin: 0 auto; 
+  margin: 0 auto;
+  font-family: Poppins;
+
  
 }
 .portada{
@@ -66,6 +74,24 @@ export default {};
   padding-top: 14px;
   display: flex;
   justify-content: space-between;
+}
+.carrito{
+  position: relative;
+
+}
+.carrito p{
+  width: 20px;
+  height: 20px;
+  
+  text-align: center;
+border: 1px solid #5640FF;
+background-color: #5640FF;
+border-radius: 50%;
+font-size: 10px;
+position: absolute;
+top: -5px;
+right: 0;
+
 }
 .texto {
   height: 215px;
@@ -87,13 +113,15 @@ export default {};
 
 
 .texto p {
-  font-size: 14pt;
-  /* margin-top: ; */
-  /* margin-bottom:82px; */
+  font-weight: 500;
+  font-size: 20px;
+  
  
 }
 .texto h1{
   margin: 0;
+  font-size: 54px;
+  font-weight: bold;
 }
 .logo2{
     display: flex;

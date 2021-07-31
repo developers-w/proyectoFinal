@@ -9,37 +9,37 @@
   </div>
   <div class="contenedorBeneficios" >
       <h2>Beneficios</h2>
-      <div class="beneficios">
+      <div class="beneficios" v-for="(beneficio,i) in beneficios" :key="i" >
           
           <img src="../assets/personas.png" alt="">
           <div class="textoBeneficio">
-             <h3>titulo</h3>
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat quibusdam velit dicta nobis obcaecati eum optio laudantium quae facere neque, incidunt quisquam sit minima corrupti, nam consectetur numquam porro in.</p> 
+             <p>{{beneficio.title}}</p>
+             <p class="texto">{{beneficio.texto}}</p> 
           </div>
       </div>
-       <div class="beneficios">
-          
-          <img src="../assets/personas.png" alt="">
-          <div class="textoBeneficio">
-             <h3>titulo</h3>
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat quibusdam velit dicta nobis obcaecati eum optio laudantium quae facere neque, incidunt quisquam sit minima corrupti, nam consectetur numquam porro in.</p> 
-          </div>
-      </div>
-       <div class="beneficios">
-          
-          <img src="../assets/personas.png" alt="">
-          <div class="textoBeneficio">
-             <h3>titulo</h3>
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat quibusdam velit dicta nobis obcaecati eum optio laudantium quae facere neque, incidunt quisquam sit minima corrupti, nam consectetur numquam porro in.</p> 
-          </div>
-      </div>
-
+      
 
   </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            beneficios:[]
+            
+        }
+    },
+    methods: {
+        async getBeneficios(){
+            const data=  await fetch('http://localhost:3000/beneficios');
+            const info= await data.json();
+            this.beneficios=info;
+        }
+    },
+    created() {
+        this.getBeneficios();
+    },
 
 }
 </script>
@@ -68,6 +68,7 @@ export default {
 .contenedorBeneficios{
     
     width: 1194px;
+    font-family: Poppins;
     color:#222222;
     margin: 0 auto;
     margin-top: 138px;
@@ -77,10 +78,13 @@ export default {
 .contenedorBeneficios h2{
     text-align: left;
     margin-bottom: 32px;
+    font-weight: bold;
+    font-size: 20;
 }
 .beneficios{
     width: 718px;
     height: 160px;
+    font-size: 14px;
     background-color:#F8F8FA;
     border-radius: 15px;
     display: flex;
@@ -97,8 +101,23 @@ export default {
     width: 538px;
     height: 57px;
     margin: 30px 0 0 30px;
+    text-align: left;
 
 }
+.textoBeneficio p {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 22px;
+
+}
+.textoBeneficio .texto{
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 300;
+    
+
+}
+
 
 
 
